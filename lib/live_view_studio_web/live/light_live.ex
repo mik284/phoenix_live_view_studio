@@ -21,13 +21,13 @@ def render(assigns) do
       <span style={"width: #{@brightness}%"}>
       <%= @brightness%>%
       </span>
-
+      <button phx-click="off">
         Off
-</button>
+      </button>
 
-<button phx-click="on">
-  On
-</button>
+    <button phx-click="on">
+      On
+    </button>
     </div>
   </div>
   """
