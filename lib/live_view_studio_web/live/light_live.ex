@@ -22,6 +22,7 @@ defmodule LiveViewStudioWeb.LightLive do
         <span style={"width: #{@brightness}%"}>
         <%= @brightness%>%
         </span>
+      </div>
         <button phx-click="off">
           Off
         </button>
@@ -36,7 +37,6 @@ defmodule LiveViewStudioWeb.LightLive do
       <button phx-click="up">
             Up
       </button>
-      </div>
     </div>
     """
   end
@@ -52,15 +52,39 @@ defmodule LiveViewStudioWeb.LightLive do
     {:noreply, socket}
   end
 
-  def handle_event("down", _, socket) do
-    brightness = socket.assigns.brightness - 10
-    socket = assign(socket, :brightness, brightness)
-    {:noreply, socket}
-  end
+  # def handle_event("down", _, socket) do
+  #   brightness = socket.assigns.brightness - 10
+  #   socket = assign(socket, :brightness, brightness)
+  #   {:noreply, socket}
+  # end
 
-  def handle_event("up", _, socket) do
-    brightness = socket.assigns.brightness + 10
-    socket = assign(socket, :brightness, brightness)
-    {:noreply, socket}
-  end
+  # def handle_event("up", _, socket) do
+  #   brightness = socket.assigns.brightness + 10
+  #   socket = assign(socket, :brightness, brightness)
+  #   {:noreply, socket}
+  # end
+
+  # That works, but there’s a convenient shortcut. When updating a value, we can use the update function, like so:
+
+  # def handle_event("down", _, socket) do
+  #   socket = update(socket, :brightness, fn b -> b - 10 end)
+  #   {:noreply, socket}
+  # end
+
+  # def handle_event("up", _, socket) do
+  #   socket = update(socket, :brightness, fn b -> b + 10 end)
+  #   {:noreply, socket}
+  # end
+  # You can make this more concise using the Elixir shorthand capture syntax:
+
+def handle_event("down", _, socket) do
+  socket = update(socket, :brightness, &(&1 - 10))
+  {:noreply, socket}
+end
+
+def handle_event("up", _, socket) do
+  socket = update(socket, :brightness, &(&1 + 10))
+  {:noreply, socket}
+end
+
 end
