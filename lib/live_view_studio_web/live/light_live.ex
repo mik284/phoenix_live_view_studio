@@ -77,13 +77,25 @@ defmodule LiveViewStudioWeb.LightLive do
   # end
   # You can make this more concise using the Elixir shorthand capture syntax:
 
+# def handle_event("down", _, socket) do
+#   socket = update(socket, :brightness, &(&1 - 10))
+#   {:noreply, socket}
+# end
+
+# def handle_event("up", _, socket) do
+#   socket = update(socket, :brightness, &(&1 + 10))
+#   {:noreply, socket}
+# end
+
+# limit how high or low the light can go by using max and min:
+
 def handle_event("down", _, socket) do
-  socket = update(socket, :brightness, &(&1 - 10))
+  socket = update(socket, :brightness, &max(&1 - 10, 0))
   {:noreply, socket}
 end
 
 def handle_event("up", _, socket) do
-  socket = update(socket, :brightness, &(&1 + 10))
+  socket = update(socket, :brightness, &min(&1 + 10, 100))
   {:noreply, socket}
 end
 
