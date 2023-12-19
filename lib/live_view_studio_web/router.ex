@@ -17,9 +17,10 @@ defmodule LiveViewStudioWeb.Router do
   scope "/", LiveViewStudioWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    # get "/", PageController, :home
 
-    live "/light", LightLive
+    get "/light",PageController, :light
+    live "/", LightLive, :home
   end
 
   # Other scopes may use custom stacks.
