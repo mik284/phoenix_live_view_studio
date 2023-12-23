@@ -12,6 +12,10 @@ defmodule LiveViewStudioWeb.PageController do
   end
 
   def users(conn, _params) do
-    render(conn, :users)
+    users = [
+      %{id: 1, name: "Alice", email: "alicemail@gmail.com"},
+       %{id: 2, name: "mike", email: "mikemail@gmail.com"},
+    ]
+    render(conn, :users, users: users)
   end
 end
