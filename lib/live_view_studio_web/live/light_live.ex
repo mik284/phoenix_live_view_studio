@@ -16,26 +16,29 @@ defmodule LiveViewStudioWeb.LightLive do
   def render(assigns) do
     # ~H creates an Heex template or Html with embedded elixir
     ~H"""
-    <h1>  Front Porch Light</h1>
+    <h1>Front Porch Light</h1>
+
     <div id="light">
       <div class="meter">
         <span style={"width: #{@brightness}%"}>
-        <%= @brightness%>%
+          <%= @brightness %>%
         </span>
       </div>
-        <button phx-click="off">
-          Off
-        </button>
-
+      
+      <button phx-click="off">
+        Off
+      </button>
+      
       <button phx-click="on">
         On
       </button>
+      
       <button phx-click="down">
-          Down
+        Down
       </button>
-
+      
       <button phx-click="up">
-            Up
+        Up
       </button>
     </div>
     """
@@ -77,26 +80,25 @@ defmodule LiveViewStudioWeb.LightLive do
   # end
   # You can make this more concise using the Elixir shorthand capture syntax:
 
-# def handle_event("down", _, socket) do
-#   socket = update(socket, :brightness, &(&1 - 10))
-#   {:noreply, socket}
-# end
+  # def handle_event("down", _, socket) do
+  #   socket = update(socket, :brightness, &(&1 - 10))
+  #   {:noreply, socket}
+  # end
 
-# def handle_event("up", _, socket) do
-#   socket = update(socket, :brightness, &(&1 + 10))
-#   {:noreply, socket}
-# end
+  # def handle_event("up", _, socket) do
+  #   socket = update(socket, :brightness, &(&1 + 10))
+  #   {:noreply, socket}
+  # end
 
-# limit how high or low the light can go by using max and min:
+  # limit how high or low the light can go by using max and min:
 
-def handle_event("down", _, socket) do
-  socket = update(socket, :brightness, &max(&1 - 10, 0))
-  {:noreply, socket}
-end
+  def handle_event("down", _, socket) do
+    socket = update(socket, :brightness, &max(&1 - 10, 0))
+    {:noreply, socket}
+  end
 
-def handle_event("up", _, socket) do
-  socket = update(socket, :brightness, &min(&1 + 10, 100))
-  {:noreply, socket}
-end
-
+  def handle_event("up", _, socket) do
+    socket = update(socket, :brightness, &min(&1 + 10, 100))
+    {:noreply, socket}
+  end
 end
