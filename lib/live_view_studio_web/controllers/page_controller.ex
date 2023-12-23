@@ -8,6 +8,10 @@ defmodule LiveViewStudioWeb.PageController do
   end
 
   def light(conn, _params) do
-    render(conn, :LightLive, layout: false)
+    render(conn, :LightLive)
+  end
+
+  def users(conn, _params) do
+    render(conn, :users)
   end
 end

@@ -20,6 +20,7 @@ defmodule LiveViewStudioWeb.Router do
     # get "/", PageController, :home
 
     get "/light", PageController, :light
+    get "/users", PageController, :users
     live "/", LightLive, :home
   end
 
