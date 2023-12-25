@@ -24,6 +24,12 @@ defmodule LiveViewStudioWeb.Router do
     live "/", LightLive, :home
   end
 
+  scope "/api", LiveViewStudioWeb do
+    pipe_through :api
+
+    resources "/posts", PostController, except: [:new, :edit]
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", LiveViewStudioWeb do
   #   pipe_through :api
