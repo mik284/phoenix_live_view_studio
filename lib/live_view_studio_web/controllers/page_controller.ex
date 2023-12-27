@@ -28,4 +28,11 @@ defmodule LiveViewStudioWeb.PageController do
 
     json(conn, %{users: users})
   end
+
+  # redirect route
+  def redirectme(conn, _params) do
+      # text(conn, "Hello mikey")
+      redirect(conn, external: "https://google.com")
+      # redirect(conn, to: .page(conn, :users)) TODO: failed confirm with updated version
+  end
 end
